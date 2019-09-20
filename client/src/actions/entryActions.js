@@ -1,9 +1,14 @@
-import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY } from '../actions/types';
+import axios from 'axios';
+import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, ENTRIES_LOADING } from '../actions/types';
 
-export const getEntries = () => {
-    return {
-        type: GET_ENTRIES
-    };
+export const getEntries = () => dispatch => {
+    dispatch(setEntriesLoading());
+    axios.get('http://localhost:5000/api/entries').then(res =>
+        dispatch({
+            type: GET_ENTRIES,
+            payload: res.data
+        })
+    )
 };
 
 export const deleteEntry = id => {
@@ -18,4 +23,10 @@ export const addEntry = entry => {
         type: ADD_ENTRY,
         payload: entry
     }
+};
+
+export const setEntriesLoading = () => {
+    return{
+        type: ENTRIES_LOADING
+    };
 };
