@@ -11,7 +11,6 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions/entryActions';
-import uuid from 'uuid';
 
 class EntryModal extends Component{
 
@@ -34,7 +33,6 @@ class EntryModal extends Component{
         e.preventDefault();
 
         const newEntry = {
-            id : uuid(),
             name : this.state.name
         };
 

@@ -3,7 +3,7 @@ import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, ENTRIES_LOADING } from '../action
 
 export const getEntries = () => dispatch => {
     dispatch(setEntriesLoading());
-    axios.get('http://localhost:5000/api/entries').then(res =>
+    axios.get('/api/entries').then(res =>
         dispatch({
             type: GET_ENTRIES,
             payload: res.data
