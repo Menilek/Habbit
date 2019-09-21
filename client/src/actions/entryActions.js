@@ -11,11 +11,13 @@ export const getEntries = () => dispatch => {
     )
 };
 
-export const deleteEntry = id => {
-    return{
-        type: DELETE_ENTRY,
-        payload: id
-    }
+export const deleteEntry = id => dispatch => {
+    axios.delete(`/api/entries/${id}`).then(res =>
+        dispatch({
+            type: DELETE_ENTRY,
+            payload: id
+        })    
+    )
 };
 
 export const addEntry = entry => dispatch => {

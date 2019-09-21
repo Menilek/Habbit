@@ -16,7 +16,7 @@ export default function(state = initialState, action){
         case DELETE_ENTRY:
             return{
                 ...state,
-                entries: state.entries.filter( entries => entries.id !== action.payload)
+                entries: state.entries.filter( entries => entries._id !== action.payload)
             };
         case ADD_ENTRY:
             return{
