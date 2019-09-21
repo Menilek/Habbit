@@ -18,11 +18,13 @@ export const deleteEntry = id => {
     }
 };
 
-export const addEntry = entry => {
-    return{
-        type: ADD_ENTRY,
-        payload: entry
-    }
+export const addEntry = entry => dispatch => {
+    axios.post('/api/entries', entry).then(res =>
+        dispatch({
+            type: ADD_ENTRY,
+            payload: res.data
+        })    
+    )
 };
 
 export const setEntriesLoading = () => {

@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
         name: req.body.name 
     });
     newEntry.save()
-        .then(entries => res.json(entries))
+        .then(entry => res.json(entry))
 });
 
 // @route DELETE api/entries/:id
