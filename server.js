@@ -2,13 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-//const entries = require('./routes/api/entries');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
 
 //DB config
-const db = require('./config/keys').mongoURI;
+const db = process.env.mongoURI;
+
 
 mongoose
     .connect(db)
