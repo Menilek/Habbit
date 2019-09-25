@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 
 //DB config
-const db = process.env.mongoURI;
+const db = process.env.MONGODB_URI;
 
 
 mongoose
