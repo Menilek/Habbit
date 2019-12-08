@@ -9,12 +9,10 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
-//DB config
 const db = process.env.MONGODB_URI;
 
-
 mongoose
-    .connect(db)
+    .connect(db, {useNewUrlParser: true})
     .then(() => console.log('MongoDB connected!'))
     .catch(err => console.log(err));
 
@@ -23,7 +21,6 @@ if(process.env.NODE_ENV === 'production'){
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
-
 }
 
 app.use('/api/entries', require('./routes/api/entries'));
