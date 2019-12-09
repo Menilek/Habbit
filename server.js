@@ -9,10 +9,11 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
-const db = process.env.MONGODB_URI;
+const prodDB = process.env.MONGODB_URI;
+const devDB = process.env.mongoURI;
 
 mongoose
-    .connect(db, {useNewUrlParser: true})
+    .connect(prodDB || devDB, {useNewUrlParser: true})
     .then(() => console.log('MongoDB connected!'))
     .catch(err => console.log(err));
 
