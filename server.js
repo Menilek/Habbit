@@ -1,22 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const path = require('path');
-const dotenv = require('dotenv');
-
-dotenv.config();
+const config = require('config');
 
 const app = express();
-app.use(bodyParser.json());
-
-const prodDB = process.env.MongoDB_URI;
+app.use(express.json());
 
 mongoose
-    .connect(prodDB, {useNewUrlParser: true})
+    .connect(config.get('MongoDB_URI'), {useNewUrlParser: true, 'useCreateIndex': true})
     .then(() => console.log('MongoDB connected!'))
     .catch(err => console.log(err));
 
 app.use('/api/entries', require('./routes/api/entries'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 if(process.env.NODE_ENV === 'production'){
     
